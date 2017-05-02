@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import post.tyrone.domain.Product;
 import post.tyrone.services.ProductService;
 
+import java.util.List;
+
 import static java.lang.String.format;
 
 @Controller
@@ -23,20 +25,22 @@ public class ProductController {
 
     @RequestMapping("/products")
     public String listProducts(Model model) {
-        model.addAttribute("products", productService.listAllProducts());
+        List<Product> products = productService.listAllProducts();
+        model.addAttribute("products", products);
         return "products";
     }
 
     @RequestMapping("/product/{id}")
     public String getProduct(@PathVariable Integer id, Model model) {
-        model.addAttribute("product", productService.getProductById(id));
-
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
         return "product";
     }
 
     @RequestMapping("product/edit/{id}")
     public String editProduct(@PathVariable Integer id, Model model) {
-        model.addAttribute("product", productService.getProductById(id));
+        Product product = productService.getProductById(id);
+        model.addAttribute("product", product);
         return "productform";
     }
 
