@@ -14,32 +14,6 @@ public class ProductServiceImpl implements ProductService {
         loadProducts();
     }
 
-    @Override
-    public List<Product> listAllProducts() {
-        return new ArrayList<>(products.values());
-    }
-
-    @Override
-    public Product getProductById(Integer id) {
-        return products.get(id);
-    }
-
-    @Override
-    public Product saveOrUpdateProduct(Product product) {
-        if (product != null) {
-            if (product.getId() == null) {
-                product.setId(getNextKey());
-            }
-            products.put(product.getId(), product);
-            return product;
-        }
-        throw new RuntimeException("Product can't be null");
-    }
-
-    private Integer getNextKey() {
-        return Collections.max(products.keySet()) + 1;
-    }
-
     private void loadProducts() {
         products = new HashMap<>();
 
@@ -71,5 +45,36 @@ public class ProductServiceImpl implements ProductService {
         products.put(2, product2);
         products.put(3, product3);
         products.put(4, product4);
+    }
+
+    @Override
+    public List<Product> listAllProducts() {
+        return new ArrayList<>(products.values());
+    }
+
+    @Override
+    public Product getProductById(Integer id) {
+        return products.get(id);
+    }
+
+    @Override
+    public Product saveOrUpdateProduct(Product product) {
+        if (product != null) {
+            if (product.getId() == null) {
+                product.setId(getNextKey());
+            }
+            products.put(product.getId(), product);
+            return product;
+        }
+        throw new RuntimeException("Product can't be null");
+    }
+
+    private Integer getNextKey() {
+        return Collections.max(products.keySet()) + 1;
+    }
+
+    @Override
+    public void deleteProduct(Integer id) {
+        products.remove(id);
     }
 }

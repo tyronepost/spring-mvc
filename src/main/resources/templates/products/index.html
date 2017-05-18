@@ -7,7 +7,7 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.css}"/>
 
-    <link rel="stylesheet" href="../static/css/spring-core.css"
+    <link rel="stylesheet" href="../../static/css/spring-core.css"
           th:href="@{css/spring-core.css}"/>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -33,6 +33,7 @@
             <td th:text="${product.imageUrl}"></td>
             <td><a th:href="${'/product/' + product.id}">View</a></td>
             <td><a th:href="${'/product/edit/' + product.id}">Edit</a></td>
+            <td><a th:href="${'/product/delete/' + product.id}">Delete</a></td>
         </tr>
     </table>
     <a th:href="${'/product/new'}">New Product</a>
